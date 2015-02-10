@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="search">30.0dip</dimen>
+    <dimen name="enterthispasscode">210.0dip</dimen>
+    <dimen name="enter">69.0px</dimen>
+    <dimen name="bottom">60.0dip</dimen>
+    <dimen name="btnwidthhight">75.0dip</dimen>
+    <dimen name="iconwidthhight">50.0dip</dimen>
+    <dimen name="textsize">20.0dip</dimen>
+    <dimen name="bt">450.0dip</dimen>
+</resources>

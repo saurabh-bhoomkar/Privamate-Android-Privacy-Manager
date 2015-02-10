@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:id="@+id/table1"
+             android:layout_width="fill_parent"
+             android:layout_height="fill_parent" >
+
+    <TableRow
+            android:id="@+id/tableRow0"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:paddingTop="10dip">
+
+        <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignRight="@+id/button1"
+                android:layout_marginTop="15dp"
+                android:text="Number of attempts for unlocking are exceeded."/>
+    </TableRow>
+
+    <TableRow
+            android:id="@+id/tableRow0"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:paddingTop="10dip">
+
+        <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignRight="@+id/button1"
+                android:layout_marginTop="15dp"
+                android:text="We would now be sending an email to the email-address you will enter in following box."/>
+    </TableRow>
+
+    <TableRow
+            android:id="@+id/tableRow0"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:paddingTop="10dip">
+
+        <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignRight="@+id/button1"
+                android:layout_marginTop="15dp"
+                android:text="This email will help you to unlock tha App." />
+
+    </TableRow>
+
+    <TableRow
+            android:id="@+id/tableRow0"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:paddingTop="50dip">
+
+        <EditText
+                android:id="@+id/editText1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textEmailAddress" />
+
+    </TableRow>
+
+    <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:paddingTop="50dip" >
+
+        <Button
+                android:id="@+id/button1"
+                android:layout_width="400dip"
+                android:layout_height="70dip"
+                android:text="Send Email"
+                android:onClick="send_email"
+                />
+    </TableRow>
+
+</TableLayout>

@@ -1,0 +1,156 @@
+package com.example.privamate;
+
+import android.app.ActivityManager;
+import android.app.Service;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.os.IBinder;
+import android.os.Looper;
+import android.util.Log;
+import android.widget.Toast;
+
+import java.util.List;
+
+/**
+ * Created by prasad on 11/18/14.
+ */
+public class AppDetector extends Service {
+
+    ActivityManager am;
+    Intent in;
+    boolean flag;
+   // String pass="";
+    ////
+    private MyDBAdapter adapter;
+    Cursor cursor= null  ;
+    boolean flag2;
+    Cursor cursor1= null  ;
+	String pass;
+
+    ///
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+    }
+
+    ////////////////
+    private String[] fromCursorToStringArray(Cursor c){
+        String[] result = new String[c.getCount()];
+        c.moveToFirst();
+        for(int i = 0; i < c.getCount(); i++){
+            String row = c.getString(1);//     (c.getColumnIndex(ReminderProvider.COLUMN_BODY));
+            //You can here manipulate a single string as you please
+            result[i] = row;
+
+          //  Toast.makeText(this, row, Toast.LENGTH_LONG).show();
+//
+            c.moveToNext();
+        }
+        return result;
+    }
+
+    /////////////////
+
+
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+
+
+        
+        try
+        {
+            pass= intent.getStringExtra("pass");
+            Log.i("-----------Pass--------- ", pass);
+
+        }
+        catch (Exception toi)
+        {
+            Toast.makeText(this,toi.getMessage(),Toast.LENGTH_LONG);
+        }
+        Intent intent1 = new Intent(Intent.ACTION_MAIN);
+        intent1.addCategory(Intent.CATEGORY_HOME);
+        ResolveInfo resolveInfo = getPackageManager().resolveActivity(intent1, PackageManager.MATCH_DEFAULT_ONLY);
+        final String home = resolveInfo.activityInfo.packageName;
+
+        //String[] result2=null;
+        adapter=new MyDBAdapter(this);
+        adapter.open();
+            cursor=adapter.getAllEntries();
+            final String[] result2 = fromCursorToStringArray(cursor);
+            cursor1=adapter.getPassword();
+            final String[] res=adapter.fromCursorToStringArray1(cursor1);
+        adapter.close();
+
+
+        
+        new Thread(new Runnable() {
+            public void run() {
+                flag = true;
+                flag2=true;
+                try {
+
+                    while (true) {
+                        am = (ActivityManager) AppDetector.this.getSystemService(Context.ACTIVITY_SERVICE);
+                        List<ActivityManager.RunningTaskInfo> alltasks = am.getRunningTasks(1);
+
+                        for (ActivityManager.RunningTaskInfo aTask : alltasks) {
+
+                            String activity_invoked=aTask.topActivity.getPackageName().toString();
+                            for(int j=0;j<result2.length;j++)
+                            {
+                                if(activity_invoked.equals(result2[j]))
+                                {
+                                    flag2=false;
+                                    break;
+                                }
+
+                            }
+
+
+                            Log.i("-----------TOP ACTIVITY---------", aTask.topActivity.getPackageName());
+
+                            if (aTask.topActivity.getPackageName().equals(home)){//("com.android.launcher")){
+                                flag=false;
+                                flag2=true;
+                            }
+
+
+                            if ((flag2==false)&& (pass.equals(res[1]))&&(flag==false)) {
+                                // When user on call screen show a alert message
+                                //Toast.makeText(this, "Calc is called", Toast.LENGTH_LONG).show();
+                                // Log.i("-----------TOP ACTIVITY---------", aTask.topActivity.getClassName());
+                                flag = true;
+                                in = new Intent(AppDetector.this, AppLockScreen.class);
+                                in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                in.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                                flag2=true;
+                                startActivity(in);
+
+                                //break;
+                            }
+                            Log.i("-----------flag---******------",""+flag);
+                        }
+                        Thread.sleep(1000);
+                        alltasks.clear();
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }).start();
+
+        return super.onStartCommand(intent, flags, startId);
+    }
+}

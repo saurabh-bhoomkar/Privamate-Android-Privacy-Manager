@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical"
+              android:gravity="center">
+
+    <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ToggleButton
+            style="?android:attr/buttonStyleSmall"
+            android:id="@+id/toggle_device_admin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Prevent app uninstalltion"
+            android:textOff="Prevent app uninstalltion"
+            android:textOn="Prevent app uninstalltion" />
+    <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Allow app uninstallation"
+            android:visibility="invisible"
+            android:onClick="ssn"
+            android:id="@+id/button"/>
+    <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reset Password"
+            android:id="@+id/btnReset"
+            android:onClick="clickreset"/>
+    <!--
+        <Button
+                android:id="@+id/button_lock_device"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="lock device"
+                android:onClick="onClick" />
+
+        <Button
+                android:id="@+id/button_reset_device"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="reset_device"
+                android:onClick="onClick" />-->
+
+</LinearLayout>

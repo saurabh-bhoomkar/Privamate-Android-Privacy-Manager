@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <Button
+            android:id="@+id/buttonSettings"
+            android:layout_width="fill_parent"
+            android:onClick="adminOptions"
+            android:text="Control Panel"
+            android:layout_height="70dip"
+            />
+
+    <ListView
+            android:id="@+id/applist"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+
+</LinearLayout>
+
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <ListView
+            android:id="@+id/applist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reset Password"
+            android:id="@+id/btnReset"
+            android:layout_marginRight="79dp" android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true" android:onClick="clickreset"/>
+
+</RelativeLayout>  -->
